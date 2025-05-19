@@ -13,7 +13,7 @@ class GPTConversationalClient:
         self.model_name = model_name
         self.top_p = 0.9
         self.temperature = temperature
-        self.max_tokens = 200
+        self.max_tokens = 300
         self.conversation = []
 
     def set_conversation(self, conversation):
@@ -62,13 +62,13 @@ Output realistic, as spoken by Swiss locals. Stay strictly in Swiss German.
 
     prompt = """You are a data generation model specialized in producing synthetic Swiss German (Schweizerdeutsch) training data for natural language processing tasks. Your responses must be written only in spoken Swiss German, not High German or English. Always use casual, natural phrasing as heard in everyday speech in the German-speaking parts of Switzerland.
 
-Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect (Zürich-style unless otherwise specified).
+Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect.
 
-Generate 10 sentences in Swiss German.
+Generate 10 sentences in Swiss German using the Basel dialect (Baseldiitsch).
 Each example should be realistic, diverse in phrasing, and aligned with how real people talk in daily life.
 
 Output format:
-plain text on one line, no special formatting or JSON.
+plain text on one line separated by a newline, no special formatting or JSON.
 
 Begin now.
 """
@@ -79,8 +79,8 @@ Begin now.
     ]
 
     client.set_conversation(conversation)
-    reporter.register_file("response", filename="all.txt")
-    for i in range(1):
+    reporter.register_file("response", filename="basel_test.txt")
+    for i in range(2):
         response = client.query()
         reporter.write("response", response, newline=True)
 
