@@ -2,11 +2,13 @@ from dotenv import load_dotenv
 import openai
 import os
 from reporting import LLMReporter
+from prompting import PromptingEngine
+from data import SwissDialDataset
 
 
 
 class GPTConversationalClient:
-    def __init__(self, model_name="gpt-4.1", temperature=1.0):
+    def __init__(self, model_name="gpt-4.1-nano", temperature=1.0):
         load_dotenv(override=True)
         self.api_key = os.environ["OPENAI_API_KEY"]
         self.client = openai.OpenAI(api_key=self.api_key)
@@ -19,10 +21,6 @@ class GPTConversationalClient:
     def set_conversation(self, conversation):
         """Initialize the conversation history"""
         self.conversation = conversation
-
-    def add_message(self, role, content):
-        """Add a message to the conversation"""
-        self.conversation.append({"role": role, "content": content})
 
     def query(self, response_format=None):
         """Send the conversation to the API and return the assistant's response"""
@@ -51,36 +49,80 @@ class GPTConversationalClient:
             raise RuntimeError(f"API query failed: {e}")
 
 def main():
-    client = GPTConversationalClient()
+    # init client
+    client = GPTConversationalClient(model_name="gpt-4.1", temperature=2.0)
+
+    # init reporter
     reporter = LLMReporter(base_dir="synthetic_data", use_timestamps=True)
-    system_prompt = """You are a data generation model specialized in producing synthetic Swiss German (Schweizerdeutsch) training data for natural language processing tasks. All output must be in spoken Swiss German, not High German or English. Use casual, natural phrasing from everyday speech in German-speaking Switzerland.
 
-Never explain, translate, or break character. Only generate raw training data. Use Zürich dialect unless otherwise instructed.
+    # few-shot dataset
+    swiss_dial_dataset = SwissDialDataset(file_path="data/swissdial/sentences_ch_de_numerics.json")
+    df = swiss_dial_dataset.load_from_json_file()
+    
+    # Create the Hugging Face dataset
+    dataset = swiss_dial_dataset.create_huggingface_dataset(df)
+    # Save the dataset to disk
 
-Output realistic, as spoken by Swiss locals. Stay strictly in Swiss German.
-"""
+    sampled_data = swiss_dial_dataset.sample_dataset(dataset['train'], num_samples=10)
 
-    prompt = """You are a data generation model specialized in producing synthetic Swiss German (Schweizerdeutsch) training data for natural language processing tasks. Your responses must be written only in spoken Swiss German, not High German or English. Always use casual, natural phrasing as heard in everyday speech in the German-speaking parts of Switzerland.
-
+    # init prompt
+    prompt = PromptingEngine('few-shot', sampled_data)
+    system_prompt = """You are a data generation model specialized in producing synthetic Swiss German (Schweizerdeutsch) training data for natural language processing tasks. """
+    prompt.set_system_prompt(system_prompt)
+    prompt_eng = """
 Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect.
 
-Generate 10 sentences in Swiss German using the Basel dialect (Baseldiitsch).
+Generate one sentence in Swiss German using the #dialect_insert# 
 Each example should be realistic, diverse in phrasing, and aligned with how real people talk in daily life.
+
+Follow these steps:
+1. Generate a sentence in Swiss German using the #dialect_insert# 
+2. Check if the sentence is indeed in the #dialect_insert#; if not, generate a new one.
+3. Compare the sentence with other dialects, and if it's too similar, generate a new one.
+
+Do these steps one after the other.
+
+Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect.
 
 Output format:
 plain text on one line separated by a newline, no special formatting or JSON.
 
 Begin now.
 """
-    # Set up the initial conversation
-    conversation = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": prompt}
-    ]
 
-    client.set_conversation(conversation)
-    reporter.register_file("response", filename="basel_test.txt")
-    for i in range(2):
+    prompt_gsw = """
+Generier mir bitte nur Trainingsdate uf Schwiizerdütsch. Ich will kei Erchlärig, Übersetzig oder Kommentar. Mach kei Sprachwechsel. Halte di an e konsistente Mundart.
+Generier e Satz in Schwiizerdütsch im Dialekt vo Basel (Baseldiitsch).
+Jedes Beispil söll realistisch si, vielfältig im Ausdruck und so wie echti Lüüt im Alltag rede.
+Nur Rohdaten usgeh — kei Erklärig, Übersetzig oder Kommentar. Mach kei Sprachwechsel. Halte di a e konsistente Mundart.
+    
+###
+
+Mach d Generierig i folgenede Schritt: 
+1. Generier e Satz in Schwiizerdütsch im Dialekt vo Basel (Baseldiitsch).
+2. Überprüef, ob de Satz würklich im Dialekt vo Basel isch, wenn nöd denne generier e neue.
+3. Versuech de Satz zu andere Dialäkt  vergliiche und wenns zu ähnlich isch, generier e neue.
+
+Füehr die Schritt eis nachem andere us. 
+
+###
+
+S Format söll folgendermasse sii: 
+eifach Text uf ere Zeile, mit eim Zeilenumbruch zwüsche, kei spezielli Formatierig oder JSON.
+Fang jetzt aa.
+"""
+    
+    dialect = "Basel"
+    few_shot_prompt = "Please generate a sentence in Swiss German using the #dialect_insert#"
+    prompt.generate_prompt(dialect,few_shot_prompt)
+    #prompt.generate_prompt(dialect,prompt_eng)
+    # Set up the initial conversation
+    
+
+    client.set_conversation(prompt.conversation)
+    print(prompt.conversation)
+    reporter.register_file("response", filename="zurich_few_test.txt")
+    for i in range(10):
         response = client.query()
         reporter.write("response", response, newline=True)
 
