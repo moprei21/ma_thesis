@@ -5,10 +5,12 @@ from datasets import Dataset
 
 
 class SwissDialDataset():
-    def __init__(self, file_path):
+    def __init__(self, file_path, dialect='Zürich'):
         self.file_path = file_path
+        self.dialect = dialect
         self.df = None
         self.dataset = None
+        self.dialect_mapping = {'Basel': 'ch_bs', 'Zürich': 'ch_zh', 'Bern': 'ch_be', 'Luzern': 'ch_lu', 'St. Gallen': 'ch_sg'}
 
 
     def load_from_json_file(self):
@@ -25,7 +27,7 @@ class SwissDialDataset():
     def create_huggingface_dataset(self,df):
         """Convert DataFrame to a Hugging Face Dataset"""
         # Convert to Hugging Face Dataset
-        required_columns = ['ch_bs']
+        required_columns = [self.dialect_mapping[self.dialect]]
         if required_columns is not None:
             df = df.dropna(subset=required_columns)
         dataset = Dataset.from_pandas(df)
@@ -48,7 +50,7 @@ class SwissDialDataset():
         """Sample a few examples from the dataset"""
         sampled_data = dataset.shuffle(seed=42).select(range(num_samples))
        
-        return sampled_data['ch_bs']
+        return sampled_data[self.dialect_mapping[self.dialect]]
 
 
 def main():
