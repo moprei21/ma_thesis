@@ -4,6 +4,8 @@ import os
 from reporting import LLMReporter
 from prompting import PromptingEngine
 from data import SwissDialDataset
+import argparse
+
 
 PROMPT_BASE = """
 Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect.
@@ -21,7 +23,7 @@ Do these steps one after the other.
 Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect.
 
 Output format:
-plain text on one line separated by a newline, no special formatting or JSON.
+10 sentences plain text on one line separated by a newline, no special formatting or JSON.
 
 Begin now.
 """
@@ -69,13 +71,42 @@ class GPTConversationalClient:
             raise RuntimeError(f"API query failed: {e}")
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="A simple CLI tool to process files."
+    )
+
+    # Positional argument (required)
+    parser.add_argument(
+        "-d","--dialect",
+        type=str,
+        help="Dialect to use for processing (e.g., Basel, Zürich, Bern)"
+    )
+
+    # Optional argument with a value
+    parser.add_argument(
+        "-o", "--output",
+        type=str,
+        help="Path to the output file"
+    )
+
+    # Optional flag (boolean)
+    parser.add_argument(
+        "-s", "--strategy",
+        type=str,
+        choices=["few-shot", "few-shot-conversational", 'zero-shot'],
+        help="Strategy used in prompting"
+    )
+
+
+    # Parse arguments
+    args = parser.parse_args()
     # init client
     client = GPTConversationalClient(model_name="gpt-4.1", temperature=2.0)
 
     # init reporter
-    reporter = LLMReporter(base_dir="synthetic_data", use_timestamps=True)
+    reporter = LLMReporter(base_dir=args.output, use_timestamps=True)
 
-    dialect = "Basel"
+    dialect = args.dialect
     # few-shot dataset
     swiss_dial_dataset = SwissDialDataset(file_path="data/swissdial/sentences_ch_de_numerics.json", dialect=dialect)
     df = swiss_dial_dataset.load_from_json_file()
@@ -85,7 +116,7 @@ def main():
     # Save the dataset to disk
 
     sampled_data = swiss_dial_dataset.sample_dataset(dataset['train'], num_samples=10)
-    strategy = "few-shot"  # or "few-shot" based on your requirement
+    strategy = args.strategy  # or "few-shot" based on your requirement
     # init prompt
 
     if strategy == "few-shot-conversational":
@@ -106,8 +137,9 @@ def main():
 
     client.set_conversation(prompt.conversation)
     print(prompt.conversation)
-    reporter.register_file("response", filename=f"{dialect.lower()}_test.txt")
-    for i in range(1):
+    reporter.register_file("response", filename=f"{dialect.lower()}.txt")
+    for i in range(5):
+        pass
         response = client.query()
         reporter.write("response", response, newline=True)
 
