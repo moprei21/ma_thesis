@@ -103,7 +103,6 @@ def main():
         prompt = PromptingEngine(strategy=strategy)
         prompt.set_system_prompt(system_prompt)
         prompt.generate_prompt(dialect,PROMPT_BASE)
-    # Set up the initial conversation
 
     client.set_conversation(prompt.conversation)
     print(prompt.conversation)
