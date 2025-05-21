@@ -1,0 +1,200 @@
+__label__ch_zh Du chasch am Abe scho um sächsi go jogge im Waidwald.
+__label__ch_zh Weisch, s Tram het hüt mega Verspötig gha.
+__label__ch_zh S Fäscht bim See isch wider richtig luschtig gsi.
+__label__ch_zh Miine Bruder hät dä best Zopf vom Läbe bache.
+__label__ch_zh Mir gönd d Wuche go ufschmöcke bi de Nonna.
+__label__ch_zh De Kafi im Viadukt isch mega guet, finds.
+__label__ch_zh Ich muess no schnäll go Migros öpis chaufe.
+__label__ch_zh I han dä neue Film i dä Arena gseh, mega spannend.
+__label__ch_zh Sie isch grad am Hönggerberg zoge, ganz näbi minere Schuel.
+__label__ch_zh Machsch mer no chli Mehlsuppe für s Znacht?
+__label__ch_zh Du, hesch no Ziit zum chli go kaffe näh?
+__label__ch_zh I wett hüt früeh go hei, de Tag isch scho lang gnueg gsi.
+__label__ch_zh Chunnt mer scho so vor, als wärs grad erscht Morge gsi.
+__label__ch_zh Häsch das gseh, was gestern am Bellevue abgange isch?
+__label__ch_zh Im Tram hocke immer so luschtigi Lüüt, findsch nöd au?
+__label__ch_zh Wänn mer morn öppis abmache wend, mues ich’s früeh wüsse.
+__label__ch_zh Ich bi gstorbe vor lache, de Witz isch zu guet gsi.
+__label__ch_zh S'Büro isch de hüt zmitzt im Chaos, nüme drus cho.
+__label__ch_zh Bi de Migros gits grad gueti Aktionen, chumm mit.
+__label__ch_zh Mues jetzt gas geh, will min Zug fahrt scho i fünf Minute.
+__label__ch_zh Du muesch öppis meh schlaafe, sonst bisch am Morge würkli gar nüm fit.
+__label__ch_zh Was hesch eigentlich am Wucheänd vor?
+__label__ch_zh Chönd mir de Zmittag bi mir dehei mache?
+__label__ch_zh Es isch mega gwundrig, wie schnell d'Lüt da in Züri loufe.
+__label__ch_zh Hesch no s Velo grad vor em Huus abgstellt?
+__label__ch_zh Weisch du, wänn de Tram abfährt?
+__label__ch_zh Muesch wieder zämestelle, was alles is Rucksack ghört?
+__label__ch_zh Gsehsch dä Regenboge vo minere Stube use?
+__label__ch_zh Chum, mir göh zäme i d Stadt es Glacé hole.
+__label__ch_zh Ich ha scho dreimal verpasst, de Schlüssel mitzneh.
+__label__ch_zh Du, hesch gseh wie schnäll de Bus wieder isch abgheit?
+__label__ch_zh I glaub, morn git’s wieder es fätts Znüni im Büro.
+__label__ch_zh Me cha nöd alles uf emene anger Tag mache, oder?
+__label__ch_zh Häsch scho ghört, d’Sandra wird bald Mami.
+__label__ch_zh Ich gang no schnell es Kaffee ga hole, chunsch mit?
+__label__ch_zh Am Samstig treffe mer eus bim See, wettet au cho?
+__label__ch_zh Du muesch dr d’App neu installiere, susch funktionierts nöd.
+__label__ch_zh Uf dä Gasse hend sie letscht nacht mega Radau gmacht.
+__label__ch_zh Komm, mir gönd i d’Altstadt, öpis feins go ässe.
+__label__ch_zh De Manuel cha guet Gitarre spiele, wüssed das?
+__label__ch_zh Am Mäntig goh i immer go jogge am Zürisee.
+__label__ch_zh Weisch no, wie mir letscht Jahr i d Berge gange sind?
+__label__ch_zh Sie hät gärn en Kafi mit viel Milch und zucker.
+__label__ch_zh De Zug isch hüt wider mol verspötet.
+__label__ch_zh Muesch am Morge früeh uf, oder chasch no schlofe?
+__label__ch_zh I ha mini Schlüssel im Tram vergässe.
+__label__ch_zh Uf de Langstrass hets immer öppis z'gschehe.
+__label__ch_zh Iri neu Jacke isch mega bequem, findsch nöd?
+__label__ch_zh S Wetter wird nächscht Wuche wieder besser, säged sie.
+__label__ch_zh Mir gönd jetzt grad öppis feins z'Nacht hole.
+__label__ch_lu Jetz gönd mir zäm is Seebad zum abchüehle.
+__label__ch_lu Hesch d‘Schlüssel vo mim Velo gseh, oder sind sie wider verbummlet?
+__label__ch_lu Gömmer morn mit em Zügli use, ech han grad Luscht uf Pilatus.
+__label__ch_lu Ech bruuch öpper, wo mit mir schnäderet währendem Morgekaffi.
+__label__ch_lu Söttmer am Samschtig am Märit gönd, die Chäse mached mega glustig.
+__label__ch_lu Am Mäntig hei si dr Sääbrunne wider putzt, drum glänzt er so fescht.
+__label__ch_lu Ech glaub, s’isch öppis mit dr Trämmli-Linie zweg.
+__label__ch_lu Wenn dr Schnee fählt, müemmer weder um s’Auto chümmert.
+__label__ch_lu Nimm drächti Schue mit, es cha chli feucht wärde.
+__label__ch_lu Mir gönd nächt hinde zum Gütschwald, wils so schmöcklechs isch.
+__label__ch_lu Hüt Morge hani s Velo useghole, will s so schön isch.
+__label__ch_lu S Brot vom Beck us em Quartier isch immer no s beschte.
+__label__ch_lu Wötsch öppis mit mir go trinken id Stadt?
+__label__ch_lu Mis Brüetschi hockt de ganzi Tag vorem Computer.
+__label__ch_lu Gestern hend mir am See abgses hockt und dä Sonnenuntergang gluegt.
+__label__ch_lu Bisch du au am Märit gsii i de Altstadt?
+__label__ch_lu Am Sunntig gömmer bi dr Grosmueter zum Zmittag.
+__label__ch_lu Es het mega viel Verkehr bi dä Pilatusstrass ghaa.
+__label__ch_lu Dr Reto cha so guet Schwiizerdütsch verzelle, da lachst di schlapp.
+__label__ch_lu Lueg, das isch doch dä neue Bäckerei, wo öppis mit Cupcake macht.
+__label__ch_lu Hüt simmer wider am See abghockt und hei es Glacé gnosse.
+__label__ch_lu D’Tramfahrt id Stadt isch immer öppis Speziells für mi.
+__label__ch_lu Mach schnäll, sus verpasst mir no dä letzte Zug hei.
+__label__ch_lu Im Sommer gönd mir viu ga brätle am Rotsee.
+__label__ch_lu Was meinsch, wötsch morn mitcho i d Badi?
+__label__ch_lu Dine neue Turnschuh lueged würkli fescht cool us!
+__label__ch_lu Chumm, mir göh zrügg a dä Markt, vielleicht gits öppis Frisches.
+__label__ch_lu Lah dä Kaffee nid z lang stah, sonsch wird er bitter.
+__label__ch_lu Am Määrit git’s d’beschte Kirschtorte, findscht nöd au?
+__label__ch_lu Mis Velo het am Morge wider e Platte gha, äs isch langsam öppis nervig.
+__label__ch_lu Wotsch mitcho, mir gönd use a See zum schwümme.
+__label__ch_lu Dänk, dä Zytungsbueb chunnt hüt wider zspat.
+__label__ch_lu Chum, mir göh schnäll id Stadt eis go zieh.
+__label__ch_lu Ech han hunger, hesch öppis feins zum Znacht.
+__label__ch_lu Dä neue Bus isch mega bequem, findscht ned au?
+__label__ch_lu Gsehsch dä Pilatus hüt so schön klar?
+__label__ch_lu Min Velo het schiine Luft meh, muess id Garage go.
+__label__ch_lu Es isch voll härzig, wie sich die Chind im Schueu freue.
+__label__ch_lu Mir händ morn en wichtige Sitzig bim Chef.
+__label__ch_lu D Machermärt isch die Wuche grad am Bahnhof.
+__label__ch_lu I gang schnäu id Stadt, wett öppis zum Znüni hole.
+__label__ch_lu S'Chögle im Vögeligärtli isch immer no defür.
+__label__ch_lu Hesch dä nöie Beck probiert bi dä Pilatusstrass?
+__label__ch_lu Mier gönd am Sunntig use a See, wetted öpper mitcho?
+__label__ch_lu Lueg, s'Regäneret scho wieder so fescht hüt z'Lozärn.
+__label__ch_lu S'Mami het de best Wäie gmacht am Samstig.
+__label__ch_lu Was mached mer am Freitag am Abig? Sägsch mer ab oder bisch debii?
+__label__ch_lu I han min Schlüssel verläärä, jetzt chume i nüm id Huus.
+__label__ch_lu Mir müend d’Natel lade, isch fascht leer worde bim Schaffe.
+__label__ch_lu Weisch no, wie schöns es isch gsii bi de Museggmauer letscht Sommer?
+__label__ch_be Hüt gah mer zämä id Stadt und loufe der Altstadt abe.
+__label__ch_be Mir hei di ganz Nacht Schwiizermusig glost und gmüetlich zäme gsässe.
+__label__ch_be S Bsuech bi dä Grosseltere isch immer ä riese Freud für mi.
+__label__ch_be Chasch mer bitte d Chafi ufstelle, wenn du der Küche bisch?
+__label__ch_be Där Himbeerguetzli het mega guet gschmacket, wett no ein?
+__label__ch_be Gschter bim Fritigmärit ha i öpis frisches Gemüse chouft.
+__label__ch_be Bisch scho emal mit dr Gurtenbahn ufe gfahrä?
+__label__ch_be Mis Velo hät en Plattfuss, mües sälber repäriärä.
+__label__ch_be Im Chinderzimmer loufe d Lichter au bis am Morget.
+__label__ch_be D Füdlätä mit de Fründe im Wald isch früehner s Highlight gsi.
+__label__ch_be Muesch öppis go organisierä für dä Apéro nachär?
+__label__ch_be Bisch ou scho am Schmöcke, wie d Bärgblüemli blüeh?
+__label__ch_be Im Läbe bruucht’s mängisch meh Gduld als Gschpür.
+__label__ch_be Ds Wiitere het mau wieder gflippt hüt z Nacht.
+__label__ch_be Hesch no schnäll ä Sack füt üsrem Znüni?
+__label__ch_be I wett viu lieber usegah als daheim hocke.
+__label__ch_be Chum doch au mit, wär mega gmüetlech!
+__label__ch_be D Tram verspäuted sech i dr Stadt wider.
+__label__ch_be De Hanspeter het dr Öpfu chrumm bisse.
+__label__ch_be Mir gönd nacher zämä i ds Gärnere.
+__label__ch_be I gang schnell d’Poschti hole.
+__label__ch_be Hüt nomittag göh mir use u loufe öppe i Wald.
+__label__ch_be Chunnt der eso o vor, dass der Bus immer z’spät chunnt?
+__label__ch_be D Müntschi im Migros isch haut mega voll gsi.
+__label__ch_be Ich ha grad ke Lust zum abe zum Märit gah.
+__label__ch_be Gits im Huus drubä wieder Musig bis am früehä Morge?
+__label__ch_be Mir gönd am Wucheend uf Münschter.
+__label__ch_be Weisch, dä Kaffee bim Bahnhof isch z’chalt gsi.
+__label__ch_be Bisch hüt wider so müed oder geit’s dir guet?
+__label__ch_be Gib mir bitte nume es bitzli Rahm zum Kaffi.
+__label__ch_be I gange hüt Abe uf d Matte mit de Kollegä.
+__label__ch_be Mir gönd mängisch z Nacht über d Aare laufe.
+__label__ch_be Bisch du scho i dr Bäckeri um s Zmorge gah hole?
+__label__ch_be Chunsch jetzt grad use, s Fritig-Abig esch doch no lang.
+__label__ch_be Ich ha mir en neue Veloglocke kauft, sie tütscht super.
+__label__ch_be Du hesch dr Ueli scho lang nümm im Stadtpark gseh?
+__label__ch_be S Brüggli hocke mer öppis zäme und schnure über d Welt.
+__label__ch_be Wottsch mit mir mitcho i d Altstadt is Glacé gah nä?
+__label__ch_be Gestern het s mächtig ufe Brüggli gäbig chraft.
+__label__ch_be I lieb s Gfühl, wenn d Sunn usegah, grad überem Gurten.
+__label__ch_be I ha mini Jacke bim Bäcker vergässe.
+__label__ch_be Du chunsch hüt öppis spöter hei, gäll?
+__label__ch_be Mir gönd am Sunntig id Berge wandere.
+__label__ch_be Cha mir öper d Türe ufmache, bitte?
+__label__ch_be Ich ha mis Portemonnaie im Auto lah.
+__label__ch_be Was meinsch, söue mir eso mache?
+__label__ch_be Der Ueli isch e rächte Gmüetsmensch.
+__label__ch_be Hesch du no Brot für z'Morge?
+__label__ch_be Si luegt immer so gmüetlech use.
+__label__ch_be Ich bi nid sicher, öb das funktioniert.
+__label__ch_bs Ich goh grad in d'Stadt für ä Kafi.
+__label__ch_bs S Baselbiet hät immer öppis los am Sunntig.
+__label__ch_bs Muesch emol d Mäss bsueche, mega cool.
+__label__ch_bs Mir gönd spaziere am Rhyy entlang.
+__label__ch_bs Jetz schneits, nimm d Jacke mit, gäll!
+__label__ch_bs Mach ned so en Gugus, chum endlich!
+__label__ch_bs D’Tramlinie zwäi isch grad uusgfalle.
+__label__ch_bs Ich ha kei Böck uf d’arbet hüt Morge.
+__label__ch_bs Si sind do so glatti Lüt i dr Stadt.
+__label__ch_bs Mir gönd Morges go frische Weggli hole.
+__label__ch_bs I gang jetzt grad dert i d Stadt un schnägg mi no es Kaffee bim Märt.
+__label__ch_bs Was machsch am Sunntig Morge? Gömmer zämme i d Zoo?
+__label__ch_bs Mi Kollegin het gseit, sie cha hütt nöd cho, will sie is Bett muess bliibe.
+__label__ch_bs Uf em Märt hani mega frische Bouillonboube gfunde, so richtig guet!
+__label__ch_bs Lueg, dr Bus chunnt scho, mir müend pressiere!
+__label__ch_bs Bisch du am Morge a d Rheinpromenade gha? Isch grad schön gsii mit dä Sunne.
+__label__ch_bs S Velo vom Mättu isch am letschte Wucheändig i de Damm bim Ländi ufgfalle.
+__label__ch_bs I bruch öppis zum ässe, mir chönd doch go Döner hole bim Clara.
+__label__ch_bs Gopferdammi, jetz hani mis Portmonnee im Tram vergässe!
+__label__ch_bs Mir gönd jedes Johr zämme uff d Basler Herbstmäss, das isch Tradition.
+__label__ch_bs Mir gönd morn am Rhy spazieren, we mers Wetter erlaubt.
+__label__ch_bs Ich han z Obsi bim Beck gholt, will sie mini Lieblingsgipfeli händ.
+__label__ch_bs Dunne isch dr neue Biolade endlich uufmache, muess mal ine luege.
+__label__ch_bs Uf em Märt hets däbe kei so gueti Ruchbrott wie bim Sunntig Beck.
+__label__ch_bs Muesch emol d Wurstsalat bim Schmale probiere, dä isch legendär.
+__label__ch_bs Mir gönd jede Mittwuch i d Baseldytschi Bibliothek, we ich fertig schaffe.
+__label__ch_bs Schlitz ohni Syy isch nid öppis, wo mir in Basel mache würded.
+__label__ch_bs Letztens han ich en alter Schulkollege bim Lällekönig troffe.
+__label__ch_bs D’Fasnacht drum, die vermiss ich jedes Joor, das isch eifach s beschti.
+__label__ch_bs Mit em Tram bisch scho schnäll bi dr Mittlere Brugg, mega bequem.
+__label__ch_bs I gang mol no dr Märt um e paar frische Rüebli z hole.
+__label__ch_bs Wills heit so schöni Sunne het, luege mer go a Rhy.
+__label__ch_bs Schaug mol, dä Velo isch ganz abegheit!
+__label__ch_bs Ich han mi Stroossnummere wieder mal vergässe.
+__label__ch_bs Kumm mer go no zäm is Glaibasel.
+__label__ch_bs I ha di letscht Nacht schaurig schliecht glä.
+__label__ch_bs Im Sommer sitz ich gern bim Fährihüüsli.
+__label__ch_bs Gib mer bitte no es Bier us mim Chüehlschrank.
+__label__ch_bs I finds lustig, wie d Lüüt do rede.
+__label__ch_bs Sitzt doch grad hie zum Zmittag!
+__label__ch_bs Ich goh grad e churzi Runde drii um s Glei basär.
+__label__ch_bs S Brüggli bim Spalentor isch neu gmacht worde.
+__label__ch_bs Im Migros am Claraplatz git's no frische Fasnachtschüechli.
+__label__ch_bs Am Morge am Rhein entlang laufe isch immer so entspannend.
+__label__ch_bs Dää Sünntig gönd mir i d'Langä Erlen öpperli frässe.
+__label__ch_bs Mini Grossmueter het immer no e Chäller voll Wi.
+__label__ch_bs Uf em Märit z Basel chunnt me fascht alli Baslerinne und Basler über dä Wäg.
+__label__ch_bs Mit em Velo s Birsfälderfeld dur rädele isch jedesmal lässig.
+__label__ch_bs Ich bruuche no Mehlsupp für s Morgestraich.
+__label__ch_bs D Tramlinie zwüschem Aeschenplatz und em Drairosenbrugg isch ab hüt gstorret.
