@@ -1,6 +1,7 @@
 import json
 import random
 import os
+
 def create_data():
 # Load your dataset
     with open("data/swissdial/sentences_ch_de_numerics.json", "r", encoding="utf-8") as f:
@@ -30,9 +31,9 @@ def create_data():
 
 
 def create_data_swissdial():
-    data_dir = "synthetic_data/fasttext_test"
+    data_dir = "synthetic_data/fasttext_fewshot_test"
     dialect_mapping = {'basel': 'ch_bs', 'zürich': 'ch_zh', 'bern': 'ch_be', 'luzern': 'ch_lu', 'St. Gallen': 'ch_sg'}
-    output_file = 'fasttext_test.txt'
+    output_file = 'fasttext_fewshot.txt'
 
     with open(output_file, "w", encoding="utf-8") as out_f:
         for filename in os.listdir(data_dir):
@@ -56,7 +57,8 @@ def eval_swissdial():
     model = fasttext.load_model("dialect_classifier.bin")
 
     # Evaluate the model on the test set
-    result = model.test("fasttext_test.txt")
+    result = model.test("fasttext_fewshot.txt")
+    print(result)
     print(f"Test samples: {result[0]}")
     print(f"Precision@1: {result[1]:.4f}")
     print(f"Recall@1: {result[2]:.4f}")
@@ -71,7 +73,7 @@ def train():
     input="train.txt",
     lr=1.0,
     epoch=100,
-    wordNgrams=2,
+    wordNgrams=3,
     verbose=2,
     minCount=1,
     loss='softmax'
@@ -85,7 +87,7 @@ def train():
     print(f"Precision@1: {result[1]:.4f}")
     print(f"Recall@1: {result[2]:.4f}")
 #create_data()
-#train()
+train()
 
-#create_data_swissdial()
+create_data_swissdial()
 eval_swissdial()
