@@ -33,7 +33,7 @@ class PromptingEngine:
 
         elif self.strategy == "few-shot":
             input_text = self.get_dialect_specific_prompt(dialect, input_text)
-            input_text = f"{input_text}\n \n ### Here are some examples of the #dialect_insert#:\n"
+            input_text = f"{input_text}\n \n ### Here are some examples of the {dialect} dialect:\n"
             for example in self.examples:
                 input_text += f"""### {example} \n """
             self.conversation.append({"role": "user", "content": input_text})
