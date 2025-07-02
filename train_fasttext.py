@@ -7,7 +7,7 @@ def create_data():
     with open("data/swissdial/sentences_ch_de_numerics.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    dialect_keys = ["ch_sg", "ch_be", "ch_zh", "ch_vs", "ch_bs", "ch_ag", "ch_lu"]
+    dialect_keys = ["ch_be", "ch_zh", "ch_bs", "ch_lu"]
 
     lines = []
     for entry in data:
@@ -30,7 +30,7 @@ def create_data():
         f.write("\n".join(test_lines))
 
 
-def create_data_swissdial():
+def create_data_swissdial(data_dir, output_file):
     data_dir = "synthetic_data/fasttext_fewshot_test"
     dialect_mapping = {'basel': 'ch_bs', 'zürich': 'ch_zh', 'bern': 'ch_be', 'luzern': 'ch_lu', 'St. Gallen': 'ch_sg'}
     output_file = 'fasttext_fewshot.txt'
@@ -50,27 +50,60 @@ def create_data_swissdial():
 
     print(f"✅ test.txt generated successfully from dialect files in '{data_dir}'")
 
-def eval_swissdial():
+def eval_swissdial(test_file):
     import fasttext
 
     # Load the trained model
     model = fasttext.load_model("dialect_classifier.bin")
 
     # Evaluate the model on the test set
-    result = model.test("fasttext_fewshot.txt")
+    result = model.test(test_file)
     print(result)
     print(f"Test samples: {result[0]}")
     print(f"Precision@1: {result[1]:.4f}")
     print(f"Recall@1: {result[2]:.4f}")
 
 
+def train_fasttext_gswde(train_file, test_file_de, test_file_ch):
+    with open(test_file_ch, 'r', encoding='utf-8') as f:
+        for entry in f:
+            label, text = entry.strip().split(maxsplit=1)
+            label = "__label__ch"
+            changed_entry = f"{label} {text}"
+            with open("fasttext_fewshot_gswde.txt", 'a', encoding='utf-8') as f_out:
+                f_out.write(changed_entry + '\n')
+    with open(test_file_de, 'r', encoding='utf-8') as f:
+        for entry in f:
+            with open("fasttext_fewshot_gswde.txt", 'a', encoding='utf-8') as f_out:
+                f_out.write(entry)
+    import fasttext
 
-def train():
+    # Train the dialect classifier
+    model = fasttext.train_supervised(
+        input=train_file,
+        lr=1.0,
+        epoch=100,
+        wordNgrams=3,
+        verbose=2,
+        minCount=1,
+        loss='softmax'
+    )
+
+    model.save_model("dialect_classifier_gswde.bin")
+    print("Model trained and saved as dialect_classifier.bin")
+
+    # Evaluate performance
+    result = model.test("fasttext_fewshot_gswde.txt")
+    print(f"Test samples: {result[0]}")
+    print(f"Precision@1: {result[1]:.4f}")
+    print(f"Recall@1: {result[2]:.4f}")
+
+def train_test(train_file, test_file):
     import fasttext
 
 # Train the dialect classifier
     model = fasttext.train_supervised(
-    input="train.txt",
+    input=train_file,
     lr=1.0,
     epoch=100,
     wordNgrams=3,
@@ -79,15 +112,75 @@ def train():
     loss='softmax'
 )
 
-    model.save_model("dialect_classifier.bin")
-
+    model.save_model(f"dialect_classifier_{train_file}.bin")
+    print(f"Model trained and saved as dialect_classifier_{train_file}.bin")
 # Evaluate performance
-    result = model.test("test.txt")
+    result = model.test(test_file)
     print(f"Test samples: {result[0]}")
     print(f"Precision@1: {result[1]:.4f}")
     print(f"Recall@1: {result[2]:.4f}")
-#create_data()
-train()
 
-create_data_swissdial()
-eval_swissdial()
+
+def create_binary_fasttext_file(input_file, target_label, output_file=None):
+    """
+    Reads FastText-labeled data from a file and writes/returns binary-labeled data
+    for the given target label.
+
+    Args:
+        input_file (str): Path to the input file with FastText format (__label__X text).
+        target_label (str): The dialect label to treat as positive (e.g., 'ch_bs').
+        output_file (str, optional): Path to save the binary data. If None, returns list.
+
+    Returns:
+        list of str: Binary-labeled data lines (only if output_file is None).
+    """
+    target_fasttext_label = f"__label__{target_label}"
+    binary_lines = []
+
+    with open(input_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            if not line.strip():
+                continue  # skip empty lines
+
+            parts = line.strip().split(maxsplit=1)
+            if len(parts) != 2:
+                continue  # malformed line
+
+            original_label, text = parts
+            binary_label = "__label__1" if original_label == target_fasttext_label else "__label__0"
+            binary_lines.append(f"{binary_label} {text}")
+
+    if output_file:
+        with open(output_file, 'w', encoding='utf-8') as f_out:
+            f_out.write("\n".join(binary_lines))
+        print(f"Binary data written to {output_file}")
+    else:
+        return binary_lines
+    
+def evaluate_binary_dialects():
+    
+    for dialect in ["ch_bs", "ch_zh", "ch_be", "ch_lu"]:
+        print(f"Creating binary FastText file for {dialect}...")
+        create_binary_fasttext_file("train.txt",dialect, f"train_{dialect}.txt")
+        create_binary_fasttext_file("fasttext_fewshot.txt", dialect, f"test_{dialect}.txt")
+        train_test(f"train_{dialect}.txt", f"test_{dialect}.txt")
+
+
+
+train_fasttext_gswde(train_file="fasttext_train_gswde.txt", test_file_de="fasttext_test_german.txt", test_file_ch="test_ch_be.txt")
+
+
+"""
+create_data()
+train_test()
+
+
+
+#
+print(f"\n Zero-Shot Setting \n")
+#create_data_swissdial("synthetic_data/fasttext_test", "fasttext_test.txt")
+eval_swissdial("fasttext_test.txt")
+
+print(f"\nFew-Shot Setting \n")
+eval_swissdial("fasttext_fewshot.txt")
+"""
