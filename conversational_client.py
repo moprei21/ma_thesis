@@ -110,10 +110,11 @@ def main():
     # few-shot dataset
     swiss_dial_dataset = SwissDialDataset(file_path="data/swissdial/sentences_ch_de_numerics.json", dialect=dialect)
     df = swiss_dial_dataset.load_from_json_file()
+    swiss_dial_dataset.dialect = dialect
     
     # Create the Hugging Face dataset
     dataset = swiss_dial_dataset.create_huggingface_dataset(df)
-    # Save the dataset to disk
+
 
     sampled_data = swiss_dial_dataset.sample_dataset(dataset['train'], num_samples=10)
     strategy = args.strategy  # or "few-shot" based on your requirement
@@ -136,10 +137,8 @@ def main():
         prompt.generate_prompt(dialect,PROMPT_BASE)
 
     client.set_conversation(prompt.conversation)
-    print(prompt.conversation)
     reporter.register_file("response", filename=f"{dialect.lower()}.txt")
     for i in range(5):
-        pass
         response = client.query()
         reporter.write("response", response, newline=True)
 
