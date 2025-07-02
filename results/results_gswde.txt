@@ -1,0 +1,4 @@
+Model trained and saved as dialect_classifier.bin
+Test samples: 400
+Precision@1: 0.8075
+Recall@1: 0.8075

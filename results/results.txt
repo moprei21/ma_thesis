@@ -1,0 +1,17 @@
+Test samples: 2439
+Precision@1: 0.8274
+Recall@1: 0.8274
+
+ Zero-Shot Setting 
+
+(200, 0.35, 0.35)
+Test samples: 200
+Precision@1: 0.3500
+Recall@1: 0.3500
+
+Few-Shot Setting 
+
+(200, 0.34, 0.34)
+Test samples: 200
+Precision@1: 0.3400
+Recall@1: 0.3400
