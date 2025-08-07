@@ -5,3 +5,5 @@
 /67ff5bf7e8bac5228a730507
 /fasttest_classifiers
 /train_test_data
+/__pycache__
+/gpu_training
