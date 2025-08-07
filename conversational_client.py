@@ -96,6 +96,12 @@ def main():
         choices=["few-shot", "few-shot-conversational", 'zero-shot'],
         help="Strategy used in prompting"
     )
+    parser.add_argument(
+        "-n", "--num_samples",
+        type=int,
+        default=10,
+        help="Number of samples to generate (default: 10)"
+    )
 
 
     # Parse arguments
@@ -138,7 +144,7 @@ def main():
 
     client.set_conversation(prompt.conversation)
     reporter.register_file("response", filename=f"{dialect.lower()}.txt")
-    for i in range(5):
+    for i in range(args.num_samples):
         response = client.query()
         reporter.write("response", response, newline=True)
 
