@@ -10,7 +10,7 @@ class SwissDialDataset():
         self.df = None
         self.dataset = None
         self.dialect = None
-        self.dialect_mapping = {'Basel': 'ch_bs', 'Zürich': 'ch_zh', 'Bern': 'ch_be', 'Luzern': 'ch_lu'}
+        self.dialect_mapping = {'Basel': 'ch_bs', 'Zürich': 'ch_zh', 'Bern': 'ch_be', 'Luzern': 'ch_lu', "Sankt Gallen":"ch_sg", 'Graubünden': 'ch_gr', 'Wallis': 'ch_vs', 'Aargau': 'ch_ag'}
 
 
     def load_from_json_file(self):
