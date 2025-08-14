@@ -1,67 +1,76 @@
-from transformers import pipeline
+from transformers import pipeline, AutoTokenizer
 import torch
+from tqdm import tqdm
 
-model_id_gpt = "openai/gpt-oss-120b"
-
-
-SYSTEM_PROMPT_TRANSLATION = (
-    "You are a Swiss German translator. Translate the following Standard "
-    "German sentence into various Swiss dialects: "
-    "St. Gallen (ch_sg), Bern (ch_be), Graubünden (ch_gr), Zürich (ch_zh), "
-    "Valais (ch_vs), Basel (ch_bs), Aargau (ch_ag), and Lucerne (ch_lu)."
-)
+model_id_local = "morit/gemma-3-4b-it-swissdial_dialect_base_5"
 
 SYSTEM_PROMPT = """You are a person speaking different Swiss German dialects in many different varieties."""
 
-# Load a chat-capable text model
+PROMPT_BASE_ZÜRICH = """
+Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect.
+
+Generate one sentence in Swiss German using the Zürich dialect 
+Each example should be realistic, diverse in phrasing, and aligned with how real people talk in daily life.
+
+Follow these steps:
+1. Generate a sentence in Swiss German using the Zürich dialect 
+2. Check if the sentence is indeed in the #dialect_insert#; if not, generate a new one.
+3. Compare the sentence with other dialects, and if it's too similar, generate a new one.
+
+Do these steps one after the other.
+
+Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect.
+
+Output format:
+1 sentence plain text on one line separated by a newline, no special formatting or JSON.
+
+Begin now.
+"""
+
+# Load pipeline and tokenizer
 pipe = pipeline(
     "text-generation",
-    model=model_id_gpt,  # or "google/gemma-7b-it"
-    device="auto",
-    torch_dtype="auto",  # Use "cuda" for GPU if available
+    model=model_id_local,
+    device="cpu",  # change to "cuda" if using GPU
 )
 
-# Keep chat history as a list of messages
+tokenizer = AutoTokenizer.from_pretrained(model_id_local)
+
+# Prepare system and user messages
 chat_history = [
     {"role": "system", "content": SYSTEM_PROMPT},
+    {"role": "user", "content": PROMPT_BASE_ZÜRICH},
 ]
 
-print("Chatbot is ready! Type 'exit' to quit.")
+# Apply chat template
+formatted_prompt = tokenizer.apply_chat_template(
+    chat_history,
+    tokenize=False,
+    add_generation_prompt=True
+).strip()
 
-while True:
-    user_input = input("\nUser: ")
-    if user_input.lower() in {"exit", "quit"}:
-        break
+# Collect 100 outputs
+results = []
+print("Generating 100 Zurich dialect sentences...\n")
 
-    # Add user message
-    chat_history.append({"role": "user", "content": user_input})
-
-    # Format into pipeline input (newer transformers versions support this directly)
-    from transformers import AutoTokenizer
-
-    tokenizer = AutoTokenizer.from_pretrained(model_id_gpt)
-
-    # Apply chat template manually — just like during fine-tuning
-    formatted_prompt = tokenizer.apply_chat_template(
-        chat_history,
-        tokenize=False,
-        add_generation_prompt=True  # This tells the model to complete as assistant
-    ).strip()
-
-    # Now generate using the raw prompt string
+for _ in tqdm(range(100)):
     output = pipe(
         formatted_prompt,
-        max_new_tokens=256,
+        max_new_tokens=64,
         do_sample=True,
         temperature=1.0,
+        top_k=64,
+        top_p=0.95,
         return_full_text=False,
     )
+    sentence = output[0]["generated_text"].strip()
+    results.append(sentence)
 
+# Print all results
+print("\nGenerated Sentences:\n")
+for i, sentence in enumerate(results, 1):
+    print(f"{i}. {sentence}")
 
-    assistant_response = output[0]["generated_text"]
-    print("\nGenerated response:")
-    print(output)
-    print(f"Assistant: {assistant_response}")
-
-    # Save assistant response into history
-    chat_history.append({"role": "assistant", "content": assistant_response})
+with open("zurich_dialect_sentences.txt", "w", encoding="utf-8") as f:
+    for sentence in results:
+        f.write(sentence + "\n")
