@@ -7,3 +7,4 @@
 /train_test_data
 /__pycache__
 /gpu_training
+/results
