@@ -27,6 +27,27 @@ Output format:
 
 Begin now.
 """
+PROMPT_BASE_ZèRICH = """
+Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect.
+
+Generate one sentence in Swiss German using the Zürich dialect 
+Each example should be realistic, diverse in phrasing, and aligned with how real people talk in daily life.
+
+Follow these steps:
+1. Generate a sentence in Swiss German using the Zürich dialect 
+2. Check if the sentence is indeed in the #dialect_insert#; if not, generate a new one.
+3. Compare the sentence with other dialects, and if it's too similar, generate a new one.
+
+Do these steps one after the other.
+
+Only output raw training data — do not explain, translate, or include any meta-commentary. Do not switch languages. Maintain a consistent dialect.
+
+Output format:
+10 sentence plain text on one line separated by a newline, no special formatting or JSON.
+
+Begin now.
+"""
+
 system_prompt = """You are a data generation model specialized in producing synthetic Swiss German (Schweizerdeutsch) training data for natural language processing tasks. """
 
 class GPTConversationalClient:
