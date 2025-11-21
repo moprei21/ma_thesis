@@ -127,47 +127,57 @@ def main():
 
     # Parse arguments
     args = parser.parse_args()
-    # init client
+
+    # init client and reporter
     client = GPTConversationalClient(model_name="gpt-4.1", temperature=2.0)
-
-    # init reporter
     reporter = LLMReporter(base_dir=args.output, use_timestamps=True)
-
     dialect = args.dialect
-    # few-shot dataset
-    swiss_dial_dataset = SwissDialDataset(file_path="data/swissdial/sentences_ch_de_numerics.json", dialect=dialect)
-    df = swiss_dial_dataset.load_from_json_file()
-    swiss_dial_dataset.dialect = dialect
     
-    # Create the Hugging Face dataset
+
+    # load dataset once
+    swiss_dial_dataset = SwissDialDataset(file_path="data/swissdial/sentences_ch_de_numerics.json", dialect=dialect)
+    swiss_dial_dataset.dialect = dialect
+    df = swiss_dial_dataset.load_from_json_file()
     dataset = swiss_dial_dataset.create_huggingface_dataset(df)
 
-
-    sampled_data = swiss_dial_dataset.sample_dataset(dataset['train'], num_samples=10)
-    strategy = args.strategy  # or "few-shot" based on your requirement
-    # init prompt
-
-    if strategy == "few-shot-conversational":
-        prompt = PromptingEngine(strategy, sampled_data)
-        prompt.set_system_prompt(system_prompt)
-        few_shot_prompt = "Please generate a sentence in Swiss German using the #dialect_insert#"
-        prompt.generate_prompt(dialect,few_shot_prompt)
-
-    elif strategy == "few-shot":
-        prompt = PromptingEngine('few-shot', sampled_data)
-        prompt.set_system_prompt(system_prompt)
-        prompt.generate_prompt(dialect,PROMPT_BASE)
-
-    else:
-        prompt = PromptingEngine(strategy=strategy)
-        prompt.set_system_prompt(system_prompt)
-        prompt.generate_prompt(dialect,PROMPT_BASE)
-
-    client.set_conversation(prompt.conversation)
+    strategy = args.strategy
     reporter.register_file("response", filename=f"{dialect.lower()}.txt")
+
+    # generate a *new conversation* for each iteration
     for i in range(args.num_samples):
-        response = client.query()
-        reporter.write("response", response, newline=True)
+        # sample 10 new sentences every time
+        sampled_data = swiss_dial_dataset.sample_dataset(dataset['train'], num_samples=10)
+
+        # init prompt engine per conversation
+        if strategy == "few-shot-conversational":
+            prompt = PromptingEngine(strategy, sampled_data)
+            prompt.set_system_prompt(system_prompt)
+            few_shot_prompt = "Please generate a sentence in Swiss German using the #dialect_insert#"
+            prompt.generate_prompt(dialect, PROMPT_BASE)
+
+        elif strategy == "few-shot":
+            prompt = PromptingEngine('few-shot', sampled_data)
+            prompt.set_system_prompt(system_prompt)
+            prompt.generate_prompt(dialect, PROMPT_BASE)
+
+        else:
+            prompt = PromptingEngine(strategy=strategy)
+            prompt.set_system_prompt(system_prompt)
+            prompt.generate_prompt(dialect, PROMPT_BASE)
+
+        # run the conversation
+        client.set_conversation(prompt.conversation)
+
+        # print conversation for debugging thw whole conversation
+
+        for msg in prompt.conversation:
+            print(f"{msg['role'].upper()}: {msg['content']}\n")
+
+        
+        #response = client.query()
+
+        # save the model output
+        #reporter.write("response", response, newline=True)
 
 if __name__ == "__main__":
     main()
