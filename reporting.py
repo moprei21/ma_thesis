@@ -2,8 +2,9 @@ import os
 from datetime import datetime
 
 class LLMReporter:
-    def __init__(self, base_dir="reports", use_timestamps=True):
+    def __init__(self, base_dir="synthetic_data", use_timestamps=True):
         self.base_dir = base_dir
+        print(f"Reports will be saved to: {self.base_dir}")
         self.use_timestamps = use_timestamps
         self.files = {}  # name -> file path
 
