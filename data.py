@@ -173,7 +173,7 @@ def main():
     swiss_dial_dataset.create_fasttext_format(split='train', output_path='fasttext_train_swiss.txt')
     train_len = len(swiss_dial_dataset.dataset['train']) * 4
 
-    sample_sizes = {'train': train_len, 'test': 200}
+    sample_sizes = {'train': train_len, 'test': 800}
     # Save the dataset to disk
 
     german_xnli_dataset = GermanXNLI()
