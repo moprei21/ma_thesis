@@ -8,3 +8,5 @@
 /__pycache__
 /gpu_training
 /results
+/images
+/venv
