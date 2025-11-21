@@ -22,7 +22,7 @@ with open("train_test_data/test.txt", "r", encoding="utf-8") as f:
     human_texts = [
     text.split(maxsplit=1)[1]            # remove the label
     for text in human_texts
-    if text.split(maxsplit=1)[0] == dialect_map[dialect]  # keep only POS
+    if text.split(maxsplit=1)[0] ==  dialect_map[dialect] # keep only POS
 ] 
     
 
