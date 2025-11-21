@@ -53,7 +53,7 @@ formatted_prompt = tokenizer.apply_chat_template(
 results = []
 print("Generating 100 Zurich dialect sentences...\n")
 
-for _ in tqdm(range(100)):
+for _ in tqdm(range(1)):
     output = pipe(
         formatted_prompt,
         max_new_tokens=64,
@@ -74,3 +74,4 @@ for i, sentence in enumerate(results, 1):
 with open("zurich_dialect_sentences.txt", "w", encoding="utf-8") as f:
     for sentence in results:
         f.write(sentence + "\n")
+
